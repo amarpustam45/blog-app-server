@@ -27,7 +27,19 @@ export const getSinglePost = async (req, res) => {
 };
 
 export const addPost = (req, res) => {
-  res.json('this is from the controller');
+  const token = req.cookies.access_token;
+  if (!token) return res.status(401).json('Not Authenticated!');
+
+  jwt.verify(token, process.env.JWT_KEY, async (err, userInfo) => {
+    if (err) return res.status(403).json('Token is not valid!');
+
+    try {
+      await Post.addPost(req.body, userInfo.id);
+      return res.status(200).json('Post has been added');
+    } catch (error) {
+      return res.status(403).json('Unable to add post');
+    }
+  });
 };
 
 export const deletePost = (req, res) => {
@@ -48,5 +60,18 @@ export const deletePost = (req, res) => {
 };
 
 export const updatePost = (req, res) => {
-  res.json('this is from the controller');
+  const token = req.cookies.access_token;
+  if (!token) return res.status(401).json('Not Authenticated!');
+
+  jwt.verify(token, process.env.JWT_KEY, async (err, userInfo) => {
+    if (err) return res.status(403).json('Token is not valid!');
+
+    const postID = req.params.id;
+    try {
+      await Post.updatePost(req.body, postID, userInfo.id);
+      return res.status(200).json('Post has been updated');
+    } catch (error) {
+      return res.status(403).json('Unable to update post');
+    }
+  });
 };
