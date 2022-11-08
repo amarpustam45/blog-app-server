@@ -14,19 +14,12 @@ const app = express();
 
 app.use(express.json({ limit: '50mb' }));
 app.use(cookieParser());
-app.use(cors());
-
-// app.post('/api/uploadCloud', async (req, res) => {
-//   try {
-//     const file = JSON.parse(req.body.data);
-//     const uploadedResponse = await cloudinary.uploader.upload(file, {
-//       upload_preset: 'dev_setups',
-//     });
-//     res.status(200).json(uploadedResponse.public_id);
-//   } catch (error) {
-//     res.status(500).json(error);
-//   }
-// });
+app.use(
+  cors({
+    credentials: true,
+    origin: 'http://localhost:3000',
+  })
+);
 
 app.use('/api/uploadCloud', uploadRoutes);
 app.use('/api/auth', authRoutes);
