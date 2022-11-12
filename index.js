@@ -31,7 +31,7 @@ app.use(function (req, res, next) {
 app.use(
   cors({
     credentials: true,
-    origin: 'http://localhost:3000',
+    origin: 'https://amarpustam-blog-app-demo.netlify.app/',
   })
 );
 
