@@ -31,7 +31,7 @@ app.use(function (req, res, next) {
 app.use(
   cors({
     credentials: true,
-    origin: 'https://amarpustam-blog-app-demo.netlify.app/*',
+    origin: 'https://amarpustam-blog-app-demo.netlify.app',
   })
 );
 
