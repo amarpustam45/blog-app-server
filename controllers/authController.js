@@ -42,7 +42,7 @@ export const login = async (req, res, next) => {
       const { password, ...other } = user[0];
       res
         .cookie('access_token', token, {
-          sameSite: none,
+          sameSite: 'none',
           secure: true,
           httpOnly: true,
         })
@@ -57,7 +57,7 @@ export const login = async (req, res, next) => {
 export const logout = (req, res) => {
   res
     .clearCookie('access_token', {
-      sameSite: none,
+      sameSite: 'none',
       secure: true,
       httpOnly: true,
     })
