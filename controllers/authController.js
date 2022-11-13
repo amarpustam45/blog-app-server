@@ -46,6 +46,7 @@ export const login = async (req, res, next) => {
           secure: true,
           httpOnly: true,
           path: '/',
+          domain: 'https://amarpustam-blog-app-demo.netlify.app/',
         })
         .status(200)
         .json(other);
@@ -62,6 +63,7 @@ export const logout = (req, res) => {
       secure: true,
       httpOnly: true,
       path: '/',
+      domain: 'https://amarpustam-blog-app-demo.netlify.app/',
     })
     .status(200)
     .json('User has been logged out');
