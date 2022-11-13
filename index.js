@@ -1,7 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
-import multer from 'multer';
 import cors from 'cors';
 import postRoutes from './routes/posts.js';
 import authRoutes from './routes/auth.js';
@@ -14,13 +13,6 @@ const app = express();
 
 app.use(express.json({ limit: '50mb' }));
 app.use(cookieParser());
-app.use(
-  cors({
-    credentials: true,
-    origin: 'http://localhost:3000',
-    // origin: 'https://amarpustam-blog-app-demo.netlify.app',
-  })
-);
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Credentials', true);
@@ -35,6 +27,14 @@ app.use((req, res, next) => {
   );
   next();
 });
+
+app.use(
+  cors({
+    credentials: true,
+    // origin: 'http://localhost:3000',
+    origin: 'https://amarpustam-blog-app-demo.netlify.app',
+  })
+);
 
 app.use('/api/uploadCloud', uploadRoutes);
 app.use('/api/auth', authRoutes);
