@@ -45,6 +45,7 @@ export const login = async (req, res, next) => {
           sameSite: 'none',
           secure: true,
           httpOnly: true,
+          path: '/',
         })
         .status(200)
         .json(other);
@@ -60,6 +61,7 @@ export const logout = (req, res) => {
       sameSite: 'none',
       secure: true,
       httpOnly: true,
+      path: '/',
     })
     .status(200)
     .json('User has been logged out');
